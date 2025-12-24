@@ -22,6 +22,12 @@ pkg i uv
 
 pkg install gh
 
+pkg install termux-api  # Requires separate app to work. This enables clipboard in nvim
+
+cargo install --locked tree-sitter-cli
+pkg i ruff  # Mason installed ruff breaks on wheel build
+
+
 
 ```
 
