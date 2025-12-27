@@ -7,18 +7,30 @@ sudo apt-get update && apt-get upgrade -y
 
 apt install -y git curl wget tmux neovim ripgrep gh openssh-client nodejs rustc
 
-pip install -yq uv
+pip install -q uv
 uv tool install ruff
-
-sh -c "$(curl -fsLS get.chezmoi.io)"
 
 apt install zsh
 chsh -s zsh
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+
+
+# These methods did not work (easily) for chezmoi
+# sh -c "$(curl -fsLS get.chezmoi.io)
+# sudo snap install chezmoi --classic
+
+# Install brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install chezmoi lazygit
+
 ```
 
 ```shell
-GITHUB_USERNAME="ag-mout" chezmoi init git@github.com:$GITHUB_USERNAME/dotfiles.git
+export GITHUB_USERNAME="ag-mout"
+chezmoi init git@github.com:$GITHUB_USERNAME/dotfiles.git
 
 ```
 
